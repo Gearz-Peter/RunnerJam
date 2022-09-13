@@ -53,14 +53,11 @@
     <UnityVersion>2019.4.40f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
-    <Compile Include="Assets\Henrique\scripts\temp2.cs" />
-    <Compile Include="Assets\Peter\scripts\spin.cs" />
-=======
     <Compile Include="Assets\Henrique\scripts\PlayerControll.cs" />
     <Compile Include="Assets\Henrique\scripts\temp2.cs" />
->>>>>>> Stashed changes
+    <Compile Include="Assets\Peter\scripts\spin.cs" />
     <Compile Include="Assets\Peter\scripts\temp.cs" />
+    <Compile Include="Assets\Ricardo\scripts\temp3.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
