@@ -5,7 +5,7 @@ using UnityEngine;
 public class pickup : MonoBehaviour
 {
 
-    [SerializeField] private GameObject cube;
+    private GameObject cube;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,10 @@ public class pickup : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
+        {
+            Destroy(this.gameObject);
+        }
+        if (other.tag == "despawn")
         {
             Destroy(this.gameObject);
         }

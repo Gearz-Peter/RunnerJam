@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class enemyInitialisation : MonoBehaviour
 {
-    [SerializeField]private int timer = 0;
-    private bool start = true;
+    private Vector3 startPos;
+    private int timer = 0;
+    private float temp;
+    [SerializeField] private Vector3 pos1;
+    [SerializeField] private Vector3 pos2;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +24,25 @@ public class enemyInitialisation : MonoBehaviour
         {
             timer++;
         }
-        else if (start == true)
+        else if (timer == 33)
         {
-            start = false;
             this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            timer++;
+
+            startPos = this.gameObject.transform.position;
+            temp = this.gameObject.transform.position.x - Random.Range(1f, 3f);
+            if (temp < -9.5)
+            {
+                temp = -9.5f;
+            }
+            pos1 = new Vector3(temp, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+            temp = this.gameObject.transform.position.x - Random.Range(1f, 3f);
+            if (temp > 9.5)
+            {
+                temp = 9.5f;
+            }
+            pos2 = new Vector3(temp, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+            timer++;
         }
-        
     }
 }

@@ -9,7 +9,7 @@ public class spin : MonoBehaviour
     [SerializeField] private float speed = 1;
     [SerializeField] private AnimationCurve curve;
     private Rigidbody cubebody;
-    [SerializeField] private float randomNumber;
+    private float randomNumber;
 
     // Start is called before the first frame update
     void Start()
