@@ -5,13 +5,18 @@ using UnityEngine;
 public class PlayerControll : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
+    int Dashes=3;
+    float DashRegen=1.5f;
+    float DashRegenRefresh;
+    float DashCooldown=0.05f;
+    float DashCooldownRefresh;
     [Header("Stats")]
     [SerializeField]  float MovementSpeed;
     [SerializeField] float PassiveSpeed;
     [SerializeField] float DashDuration;
     [SerializeField] float DashSpeed;
-    
-  
+    [SerializeField] DashTrail Trailer;
+    [SerializeField] int maxDashes;
 
 
     void Start()
@@ -25,6 +30,22 @@ public class PlayerControll : MonoBehaviour
         
         float Horizontal = Input.GetAxisRaw("Horizontal");
         float Vertical = Input.GetAxisRaw("Vertical");
+        
+
+        if (Dashes < maxDashes)
+        {
+           
+            if (DashRegenRefresh <= 0)
+            {
+              
+                DashRegenRefresh = DashRegen;
+                Dashes++;
+            }
+           else
+            {
+                DashRegenRefresh -= Time.deltaTime;
+            }
+        }
 
 
         if(Input.GetKey(KeyCode.S) && PassiveSpeed > 0.005f)
@@ -57,35 +78,46 @@ public class PlayerControll : MonoBehaviour
             }
         }
 
-
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if(DashCooldownRefresh > -1)
         {
-       
+            DashCooldownRefresh -= Time.deltaTime;
+        }
 
 
-            if(Vertical < 0 && Horizontal == 0)
+        if(Input.GetKeyDown(KeyCode.LeftShift) && DashCooldownRefresh < 0 && Dashes > 0)
+        {
+            DashCooldownRefresh = DashCooldown;
+            Dashes--;
+
+            if (Vertical == 0 && Horizontal == 0)
             {
                 StartCoroutine(DashNumerator(new Vector3(0, 0, 1)));
 
             }
             else
             {
-                if(Vertical > 0)
+                if (Vertical < 0 && Horizontal == 0)
                 {
-                    StartCoroutine(DashNumerator(new Vector3(Horizontal, 0, Vertical)));
+                    StartCoroutine(DashNumerator(new Vector3(0, 0, 1)));
+
                 }
                 else
                 {
-                    StartCoroutine(DashNumerator(new Vector3(Horizontal, 0, 0)));
+                    if (Vertical > 0)
+                    {
+                        StartCoroutine(DashNumerator(new Vector3(Horizontal, 0, Vertical)));
+                    }
+                    else
+                    {
+                        StartCoroutine(DashNumerator(new Vector3(Horizontal, 0, 0)));
+                    }
+
                 }
-
             }
+
+         
             
-            if(Vertical == 0 && Horizontal == 0)
-            {
-                StartCoroutine(DashNumerator(new Vector3(0, 0, 1)));
-
-            }
+            
         }
 
         controller.Move(new Vector3(0,0, PassiveSpeed ));
@@ -97,16 +129,17 @@ public class PlayerControll : MonoBehaviour
     IEnumerator DashNumerator(Vector3 Dir)
     {
         float DashElapsed = DashDuration;
-
-        while(DashElapsed > 0)
+        Trailer.StartTrail();
+        while (DashElapsed > 0)
         {
-            Debug.Log("moving");
-
+           
             DashElapsed -= Time.deltaTime;
-            controller.Move(new Vector3(Dir.x * DashSpeed, 0, Dir.z * DashSpeed));
+            controller.Move(new Vector3(Dir.x * DashSpeed * Time.deltaTime, 0, Dir.z * DashSpeed * Time.deltaTime));
             yield return null;
         }
-        Debug.Log("done");
+        Trailer.EndTrail();
+
+      
         
     }
 }

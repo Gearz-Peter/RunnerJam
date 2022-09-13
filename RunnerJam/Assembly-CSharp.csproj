@@ -53,6 +53,7 @@
     <UnityVersion>2019.4.40f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <Compile Include="Assets\Henrique\scripts\PlayerControll.cs" />
     <Compile Include="Assets\Henrique\scripts\temp2.cs" />
 <<<<<<< Updated upstream
@@ -65,6 +66,19 @@
     <Compile Include="Assets\Peter\scripts\onDeath.cs" />
     <Compile Include="Assets\Peter\scripts\pickup.cs" />
     <Compile Include="Assets\Peter\scripts\spin.cs" />
+>>>>>>> Stashed changes
+=======
+    <Compile Include="Assets\Henrique\scripts\DashTrail.cs" />
+    <Compile Include="Assets\Henrique\scripts\IPoolerObject.cs" />
+    <Compile Include="Assets\Henrique\scripts\ObjectPooler.cs" />
+    <Compile Include="Assets\Henrique\scripts\PlayerControll.cs" />
+    <Compile Include="Assets\Henrique\scripts\PlayerShooting.cs" />
+    <Compile Include="Assets\Henrique\scripts\SmallBullet.cs" />
+    <Compile Include="Assets\Henrique\scripts\Trail.cs" />
+    <Compile Include="Assets\Henrique\scripts\TriBullet.cs" />
+    <Compile Include="Assets\Henrique\scripts\temp2.cs" />
+    <Compile Include="Assets\Peter\scripts\spin.cs" />
+    <Compile Include="Assets\Peter\scripts\temp.cs" />
 >>>>>>> Stashed changes
     <Compile Include="Assets\Ricardo\scripts\temp3.cs" />
   </ItemGroup>
