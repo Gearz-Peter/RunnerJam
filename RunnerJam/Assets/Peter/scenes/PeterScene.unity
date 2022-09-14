@@ -134,8 +134,10 @@ GameObject:
   - component: {fileID: 4314123}
   - component: {fileID: 4314122}
   - component: {fileID: 4314121}
-  - component: {fileID: 4314120}
   - component: {fileID: 4314126}
+  - component: {fileID: 4314128}
+  - component: {fileID: 4314127}
+  - component: {fileID: 4314120}
   m_Layer: 0
   m_Name: PlayerCube
   m_TagString: Player
@@ -152,16 +154,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 4314119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3599d1ee8476a284d962e86dd5b6c7c3, type: 3}
+  m_Script: {fileID: 11500000, guid: efde29fce063ee24bac0921028d9c2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 4314121}
-  MovementSpeed: 0.02
-  PassiveSpeed: 0.01
-  DashDuration: 0.25
-  DashSpeed: 0.08
-  Trailer: {fileID: 0}
-  maxDashes: 0
+  ShootPoint: {fileID: 1871321644}
+  CurrentBulletType:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  ShootDelay: 0
+  SmallBulletDelay: 0.1
+  TripleBulletDelay: 0.15
 --- !u!143 &4314121
 CharacterController:
   m_ObjectHideFlags: 0
@@ -250,7 +262,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1871321644}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -266,6 +279,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea4ec79bdf40374bbd800c575a2df52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4314127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721081292a37cb14db8d930fc79db6bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4314128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3599d1ee8476a284d962e86dd5b6c7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4314121}
+  MovementSpeed: 5
+  PassiveSpeed: 5
+  MaxPassiveSpeed: 10
+  MinPassiveSpeed: 3
+  NormalPassiveSpeed: 5
+  DashDuration: 0.1
+  DashSpeed: 30
+  Trailer: {fileID: 4314127}
+  maxDashes: 3
+  disabled: 0
 --- !u!1 &360773771
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +365,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 17127502ce35f1e4c9d65597c483b5ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -663,6 +711,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &1871321643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1871321644}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1871321644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871321643}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4314125}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1902443629
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +928,62 @@ Transform:
   m_Father: {fileID: 1034563283}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4211734913079846261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4211734913079846263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4211734913079846262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4211734913079846263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688402511ce59f94c8194820a8d8c25d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: PlayerDash
+    prefab: {fileID: 5455850118705557953, guid: 276ca2116920c9b4598b871baf3aaa2b,
+      type: 3}
+    size: 50
+  - tag: SmallBullet
+    prefab: {fileID: 6034406803125987479, guid: f40ac1dced1c8984ba8c65ff144f51af,
+      type: 3}
+    size: 1000
+  - tag: TripleBullet
+    prefab: {fileID: 6034406803125987479, guid: 9a4cea7c9e4743b4fa6b3d2406e8a236,
+      type: 3}
+    size: 1000
+--- !u!1 &4211734913079846263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4211734913079846261}
+  - component: {fileID: 4211734913079846262}
+  m_Layer: 0
+  m_Name: ObjectPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &6989175034855548511
 PrefabInstance:
   m_ObjectHideFlags: 0
