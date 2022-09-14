@@ -229,11 +229,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4050634884944349516, guid: dff746963b681cc4b8d1ccb824eb463a,
     type: 3}
-  frecuency: 0.1
-  speedShot: 5
+  frecuency: 1
+  speedShot: 1
+  frecuencyRound: 0.3
+  numberBulletPerShot: 0
   wave: 0
-  numberBullets: 20
-  numberWaves: 0
+  numberBullets: 5
   initialAngle: -10
   endAngle: 10
 --- !u!1 &1624222574
