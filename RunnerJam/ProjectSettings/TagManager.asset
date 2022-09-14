@@ -3,17 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-<<<<<<< Updated upstream
-  - despawn
-  - DontDestroy
-<<<<<<< Updated upstream
-=======
-  - PlayerBullet
->>>>>>> Stashed changes
-=======
-  - item
->>>>>>> Stashed changes
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -23,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - PlayerBullet
+  - 
   - 
   - 
   - 
