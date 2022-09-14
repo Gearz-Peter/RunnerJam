@@ -17,6 +17,8 @@ public class PlayerShooting : MonoBehaviour
     float SmallBulletDelayR, TripleBulletDelayR;
 
 
+    
+
     public void AddNewBullet(string bullettype)
     {
         

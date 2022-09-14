@@ -5,9 +5,11 @@ using UnityEngine;
 public class Trail : MonoBehaviour, IPoolerObject
 {
     [SerializeField] GameObject Light;
+
+    
    public void OnObjectSpawn()
     {
-        Light.SetActive(true);
+        // Light.SetActive(true);
         transform.localScale = new Vector3(1, 1, 1);
         StartCoroutine(FadeNumerator());
     }
@@ -20,7 +22,7 @@ public class Trail : MonoBehaviour, IPoolerObject
             transform.localScale = new Vector3(transform.localScale.x - 2 * Time.deltaTime, transform.localScale.y - 2* Time.deltaTime, transform.localScale.z - 2 * Time.deltaTime);
         }
         transform.localScale = Vector3.zero;
-        Light.SetActive(false);
+        gameObject.SetActive(false);
 
     }
 }

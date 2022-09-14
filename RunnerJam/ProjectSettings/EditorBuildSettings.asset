@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Henrique/scenes/temp.unity
+    guid: 2fa5d109daf7eb44ea2f82a1618a79e7
+  - enabled: 1
+    path: Assets/Henrique/scenes/Number1.unity
+    guid: c71a8baa9474ff44fb962cc0bdd731ff
+  - enabled: 1
+    path: Assets/Henrique/scenes/Number2.unity
+    guid: e071ecedfe073bf43bd1ae7e68995b9e
   m_configObjects: {}

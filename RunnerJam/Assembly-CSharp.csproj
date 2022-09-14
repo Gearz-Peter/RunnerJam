@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Assets\Henrique\scripts\DashTrail.cs" />
     <Compile Include="Assets\Henrique\scripts\IPoolerObject.cs" />
+    <Compile Include="Assets\Henrique\scripts\LoadNextScene.cs" />
+    <Compile Include="Assets\Henrique\scripts\LoadNextSceneSpawnSet.cs" />
     <Compile Include="Assets\Henrique\scripts\ObjectPooler.cs" />
     <Compile Include="Assets\Henrique\scripts\PlayerControll.cs" />
     <Compile Include="Assets\Henrique\scripts\PlayerShooting.cs" />

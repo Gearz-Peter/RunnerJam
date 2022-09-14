@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1ebc0567b0c4c4391c1ee4a48b36b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeTime: 1
+  LifeTime: 0.5
   BulletSpeed: 25
 --- !u!65 &1916432706164344519
 BoxCollider:

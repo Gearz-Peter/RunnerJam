@@ -29,6 +29,9 @@ public class ObjectPooler : MonoBehaviour
 
     private void Start()
     {
+
+        DontDestroyOnLoad(gameObject);
+
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach(Pool pool in pools)
@@ -37,6 +40,7 @@ public class ObjectPooler : MonoBehaviour
             for (int i=0;i<pool.size;i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
+                DontDestroyOnLoad(obj);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }

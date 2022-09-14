@@ -13,78 +13,101 @@ public class PlayerControll : MonoBehaviour
     [Header("Stats")]
     [SerializeField]  float MovementSpeed;
     [SerializeField] float PassiveSpeed;
+    [SerializeField] float MaxPassiveSpeed;
+    [SerializeField] float MinPassiveSpeed;
+    [SerializeField] float NormalPassiveSpeed;
     [SerializeField] float DashDuration;
     [SerializeField] float DashSpeed;
     [SerializeField] DashTrail Trailer;
     [SerializeField] int maxDashes;
 
-
+    [SerializeField] bool disabled;
     void Start()
     {
-        
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+
+        PassiveSpeed = NormalPassiveSpeed;
+        DontDestroyOnLoad(gameObject);
     }
+    private void OnLevelWasLoaded(int level)
+    {
+        disabled = true;
+        gameObject.tag = "Untagged";
+        transform.position = new Vector3(transform.position.x, transform.position.y, -19);
+        StartCoroutine(ReEnable());
+    }
+    IEnumerator ReEnable()
+    {
+        yield return new WaitForSeconds(1);
+        disabled = false;
+        gameObject.tag = "Player";
+
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        
+       if (!disabled)   
+        { 
         float Horizontal = Input.GetAxisRaw("Horizontal");
         float Vertical = Input.GetAxisRaw("Vertical");
-        
+
 
         if (Dashes < maxDashes)
         {
-           
+
             if (DashRegenRefresh <= 0)
             {
-              
+
                 DashRegenRefresh = DashRegen;
                 Dashes++;
             }
-           else
+            else
             {
                 DashRegenRefresh -= Time.deltaTime;
             }
         }
 
 
-        if(Input.GetKey(KeyCode.S) && PassiveSpeed > 0.005f)
+        if (Input.GetKey(KeyCode.S) && PassiveSpeed > MinPassiveSpeed)
         {
-            PassiveSpeed -= 0.1f * Time.deltaTime;
+            PassiveSpeed -= 5 * Time.deltaTime;
 
         }
         else
         {
-            if (PassiveSpeed < 0.01f)
+            if (PassiveSpeed < NormalPassiveSpeed)
             {
-                PassiveSpeed += 0.2f * Time.deltaTime;
+                PassiveSpeed += 5 * Time.deltaTime;
 
 
             }
         }
 
-        if (Input.GetKey(KeyCode.W) && PassiveSpeed < 0.02f)
+        if (Input.GetKey(KeyCode.W) && PassiveSpeed < MaxPassiveSpeed)
         {
-            PassiveSpeed += 0.1f * Time.deltaTime;
+            PassiveSpeed += 5 * Time.deltaTime;
 
         }
         else
         {
-            if (PassiveSpeed > 0.01f)
+            if (PassiveSpeed > NormalPassiveSpeed)
             {
-                PassiveSpeed -= 0.2f * Time.deltaTime;
+                PassiveSpeed -= 5 * Time.deltaTime;
 
 
             }
         }
 
-        if(DashCooldownRefresh > -1)
+        if (DashCooldownRefresh > -1)
         {
             DashCooldownRefresh -= Time.deltaTime;
         }
 
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && DashCooldownRefresh < 0 && Dashes > 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && DashCooldownRefresh < 0 && Dashes > 0)
         {
             DashCooldownRefresh = DashCooldown;
             Dashes--;
@@ -115,17 +138,19 @@ public class PlayerControll : MonoBehaviour
                 }
             }
 
-         
-            
-            
+
+
+
         }
 
-        controller.Move(new Vector3(0,0, PassiveSpeed ));
-      controller.Move( new Vector3( Horizontal * MovementSpeed,0, 0));
-
-        
+        controller.Move(new Vector3(0, 0, PassiveSpeed * Time.deltaTime));
+        controller.Move(new Vector3(Horizontal * MovementSpeed * Time.deltaTime, 0, 0));
 
     }
+
+    }
+
+
     IEnumerator DashNumerator(Vector3 Dir)
     {
         float DashElapsed = DashDuration;
@@ -139,7 +164,7 @@ public class PlayerControll : MonoBehaviour
         }
         Trailer.EndTrail();
 
-      
-        
+
+        }
     }
-}
+

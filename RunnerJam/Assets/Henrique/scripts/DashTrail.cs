@@ -8,9 +8,13 @@ public class DashTrail : MonoBehaviour
 
     ObjectPooler objectpooler;
     IEnumerator Spawner;
+
+
+
     private void Start()
     {
         objectpooler = ObjectPooler.Instance;
+
     }
 
     public void StartTrail()
@@ -31,5 +35,6 @@ public class DashTrail : MonoBehaviour
            objectpooler.SpawnFromPool("PlayerDash", transform.position, Quaternion.identity);
             yield return new WaitForSeconds(0.007f);
         }
+       
     }
 }
