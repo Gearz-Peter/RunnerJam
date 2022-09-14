@@ -75,6 +75,7 @@
     <Compile Include="Assets\Peter\scripts\pickup.cs" />
     <Compile Include="Assets\Peter\scripts\spin.cs" />
     <Compile Include="Assets\Ricardo\scripts\bullet.cs" />
+    <Compile Include="Assets\Ricardo\scripts\bulletPool.cs" />
     <Compile Include="Assets\Ricardo\scripts\shottingbehavior.cs" />
     <Compile Include="Assets\Ricardo\scripts\temp3.cs" />
   </ItemGroup>

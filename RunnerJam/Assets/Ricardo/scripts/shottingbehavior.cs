@@ -11,8 +11,10 @@ public class shottingbehavior : MonoBehaviour
     [SerializeField] float frecuency;
     [SerializeField] float speedShot;
 
-    [SerializeField] float frecuencyRound;
-    [SerializeField] int numberBulletPerShot;
+    
+    [SerializeField] float burstFrecuency;
+    [Range(1, 100)]
+    [SerializeField] int numberBulletPerBurst;
 
     [SerializeField] bool wave;
     [SerializeField] float numberBullets;
@@ -21,7 +23,7 @@ public class shottingbehavior : MonoBehaviour
     float angle;
     int angleIndex;
     int angleStep;
-    int currentBullets ;
+    int currentBullets;
 
 
     float currentTime;
@@ -30,10 +32,10 @@ public class shottingbehavior : MonoBehaviour
     Transform enemyTransform;
     GameObject tmp;
     bullet tmpBullet;
+
     GameObject bulletsPoolGO;
     bulletPool bulletsPool;
 
-    GameObject bulletGO;
 
     // Start is called before the first frame update
     void Start(){
@@ -49,7 +51,7 @@ public class shottingbehavior : MonoBehaviour
         angleIndex = 0;
         angleStep = 1;
 
-        currentBullets = numberBulletPerShot;
+        currentBullets = numberBulletPerBurst;
 
         bulletsPoolGO = GameObject.Find("BulletsPool");
         if(null != bulletsPoolGO)
@@ -62,54 +64,61 @@ public class shottingbehavior : MonoBehaviour
     void Update()
     {
         currentTime += Time.deltaTime;
-        if (currentTime - previousTime >= frecuency)
-        {
-            angle = endAngle - initialAngle;
-            angle = angle / (numberBullets - 1);
+        angle = endAngle - initialAngle;
+        angle = angle / (numberBullets - 1);
+        burstFrecuency = Mathf.Clamp(burstFrecuency, 0, frecuency);
 
-            if (wave)
+        if (wave)
+        {
+            if (currentTime - previousTime >= frecuency)
             {
                 for (int i = 0; i < numberBullets; i++)
                 {
                     shotBullet(i);
                 }
-            }
-            else
-            {
-                //Single
-                shotBullet(angleIndex);
 
-                previousBulletTime = currentTime;
-                currentBullets = numberBulletPerShot;
-                angleIndex += angleStep;
-                if (angleIndex >= numberBullets - 1) { angleStep = -1; }
-                if (angleIndex <= 0) { angleStep = 1; }
-
-            }
-
-            previousTime = currentTime;
-        }
-
-        // Semiautomatic
-        if(frecuencyRound > frecuency)
-        {
-            frecuencyRound = frecuency / numberBulletPerShot;
-        }
-       
-        if (currentBullets > 1) {
-            
-            if (currentTime - previousBulletTime >= frecuencyRound)
-            {
-                shotBullet(angleIndex);
-                previousBulletTime = currentTime;
-                currentBullets--;
-                Debug.Log("aaa");
+                previousTime = currentTime;
             }
         }
         else
         {
+            //Single
+            if (currentTime - previousTime >= frecuency)
+            {
+                shotBullet(angleIndex);
+                if (numberBulletPerBurst <= 1) { 
+                    angleIndex += angleStep;
+                    if (angleIndex >= numberBullets - 1) { angleStep = -1; }
+                    if (angleIndex <= 0) { angleStep = 1; }
+                }
+                previousBulletTime = currentTime;
+                previousTime = currentTime;
+                currentBullets = numberBulletPerBurst;
+                currentBullets--;
+            }
+
+
+            //Burst
+            if (numberBulletPerBurst > 1 && currentBullets > 0)
+            {
+                if (currentTime - previousBulletTime >= burstFrecuency)
+                {
+                    shotBullet(angleIndex);
+                    currentBullets--;
+                    previousBulletTime = currentTime;
+                    if (currentBullets == 0)
+                    {
+                        angleIndex += angleStep;
+                        if (angleIndex >= numberBullets - 1) { angleStep = -1; }
+                        if (angleIndex <= 0) { angleStep = 1; }
+                    }
+                
+                }
+            }
             
         }
+
+        
     }
 
     private void shotBullet(int bulletAngle)
