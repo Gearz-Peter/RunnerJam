@@ -30,6 +30,10 @@ public class shottingbehavior : MonoBehaviour
     Transform enemyTransform;
     GameObject tmp;
     bullet tmpBullet;
+    GameObject bulletsPoolGO;
+    bulletPool bulletsPool;
+
+    GameObject bulletGO;
 
     // Start is called before the first frame update
     void Start(){
@@ -39,12 +43,19 @@ public class shottingbehavior : MonoBehaviour
         previousBulletTime = 100.0f;
         enemyTransform = GetComponent<Transform>();
 
+
         angle = endAngle - initialAngle;
         angle = angle / numberBullets;
         angleIndex = 0;
         angleStep = 1;
 
         currentBullets = numberBulletPerShot;
+
+        bulletsPoolGO = GameObject.Find("BulletsPool");
+        if(null != bulletsPoolGO)
+        {
+            bulletsPool = bulletsPoolGO.GetComponent<bulletPool>();
+        }
     }
 
     // Update is called once per frame
@@ -107,8 +118,9 @@ public class shottingbehavior : MonoBehaviour
         Quaternion newQRot = enemyTransform.rotation;
         newQRot.eulerAngles += newRotation;
 
-        tmp = Instantiate(bulletPrefab, enemyTransform.position + enemyTransform.forward, newQRot);
+        //tmp = Instantiate(bulletPrefab, enemyTransform.position + enemyTransform.forward, newQRot);
+        tmp = bulletsPool.shot();
         tmpBullet = tmp.GetComponent<bullet>();
-        tmpBullet.shot(speedShot);
+        tmpBullet.shot(speedShot, enemyTransform.position + enemyTransform.forward, newQRot);
     }
 }
