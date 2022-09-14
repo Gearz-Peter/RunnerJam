@@ -7,8 +7,12 @@ TagManager:
 <<<<<<< Updated upstream
   - despawn
   - DontDestroy
+<<<<<<< Updated upstream
 =======
   - PlayerBullet
+>>>>>>> Stashed changes
+=======
+  - item
 >>>>>>> Stashed changes
   layers:
   - Default

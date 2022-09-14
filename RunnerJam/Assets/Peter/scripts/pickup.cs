@@ -4,31 +4,17 @@ using UnityEngine;
 
 public class pickup : MonoBehaviour
 {
-
-    private GameObject cube;
-
     // Start is called before the first frame update
     void Start()
     {
-        cube = this.gameObject;
+        
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "item")
         {
-            Destroy(this.gameObject);
+            Destroy(other.gameObject);
         }
-        if (other.tag == "despawn")
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

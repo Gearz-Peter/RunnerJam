@@ -65,6 +65,7 @@
     <Compile Include="Assets\Henrique\scripts\TriBullet.cs" />
     <Compile Include="Assets\Henrique\scripts\temp2.cs" />
     <Compile Include="Assets\Peter\scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Peter\scripts\Despawn.cs" />
     <Compile Include="Assets\Peter\scripts\DifficultyScaling.cs" />
     <Compile Include="Assets\Peter\scripts\DontDestroy.cs" />
     <Compile Include="Assets\Peter\scripts\EnemyMovement.cs" />

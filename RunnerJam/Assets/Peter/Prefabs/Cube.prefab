@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 2564981864591462058}
   - component: {fileID: 2564981864591462061}
   - component: {fileID: 5166953426028545416}
-  - component: {fileID: 2342961903074065768}
+  - component: {fileID: 3012738992395287391}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +137,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
-  randomNumber: 0
 --- !u!135 &5166953426028545416
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -151,7 +150,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2342961903074065768
+--- !u!114 &3012738992395287391
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,4 +162,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a51ad693bdb81646bc074bbd4c4c4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube: {fileID: 0}
