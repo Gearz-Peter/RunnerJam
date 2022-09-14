@@ -5,12 +5,12 @@ using UnityEngine;
 public class enemySpawn : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private float spawntime;
+    [SerializeField] private float spawntime = 0;
 
     private float time = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         
     }
@@ -24,7 +24,7 @@ public class enemySpawn : MonoBehaviour
         {
             Instantiate(enemyPrefab, this.gameObject.transform);
             time = 0;
-            spawntime = Mathf.Lerp(spawntime, 1, .1f);
+            spawntime = (1 / GameObject.FindWithTag("DontDestroy").GetComponent<DifficultyScaling>().difficulty) - .5f;
         }
     }
 

@@ -5,10 +5,10 @@ using UnityEngine;
 public class enemyInitialisation : MonoBehaviour
 {
     private Vector3 startPos;
-    private int timer = 0;
+    public int timer = 0;
     private float temp;
-    [SerializeField] private Vector3 pos1;
-    [SerializeField] private Vector3 pos2;
+    public Vector3 pos1;
+    public Vector3 pos2;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class enemyInitialisation : MonoBehaviour
         {
             timer++;
         }
-        else if (timer == 33)
+        else if (timer == 35)
         {
             this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             timer++;
@@ -36,7 +36,7 @@ public class enemyInitialisation : MonoBehaviour
                 temp = -9.5f;
             }
             pos1 = new Vector3(temp, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
-            temp = this.gameObject.transform.position.x - Random.Range(1f, 3f);
+            temp = this.gameObject.transform.position.x + Random.Range(1f, 3f);
             if (temp > 9.5)
             {
                 temp = 9.5f;
