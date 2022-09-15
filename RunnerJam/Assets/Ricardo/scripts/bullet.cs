@@ -23,7 +23,7 @@ public class bullet : MonoBehaviour
     void Update()
     {
         //forWardMovement
-        bulletTransform.Translate(new Vector3(0.0f, 0.0f, 1.0f) * speed * Time.deltaTime);
+        bulletTransform.Translate(new Vector3(0.0f, 0.0f, -1.0f) * speed * Time.deltaTime);
     }
 
     public void shot(float speed, Vector3 position, Quaternion rotation)

@@ -10,8 +10,9 @@ public class playerBulletCollision : MonoBehaviour
        
         if (other.gameObject.tag == "Bullet")
         {
-            Debug.Log("Bullet");
+
             other.gameObject.SetActive(false);
+            //Do something more
         }
     }
 }

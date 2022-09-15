@@ -130,6 +130,6 @@ public class shottingbehavior : MonoBehaviour
         //tmp = Instantiate(bulletPrefab, enemyTransform.position + enemyTransform.forward, newQRot);
         tmp = bulletsPool.shot();
         tmpBullet = tmp.GetComponent<bullet>();
-        tmpBullet.shot(speedShot, enemyTransform.position + enemyTransform.forward, newQRot);
+        tmpBullet.shot(speedShot, enemyTransform.position - enemyTransform.forward, newQRot);
     }
 }

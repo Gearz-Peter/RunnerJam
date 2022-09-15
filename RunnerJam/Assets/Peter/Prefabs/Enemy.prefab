@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -6309259441701920150}
   - component: {fileID: -8051483727640011199}
   - component: {fileID: -2930759649726613175}
+  - component: {fileID: 4295832487897669824}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -154,3 +155,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afffb40c197c06940919a85ff0ed022e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4295832487897669824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7048307007810403283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ecb0675a8cbcb548a0eaae935db20e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 0}
+  frecuency: 2
+  speedShot: 4
+  burstFrecuency: 0
+  numberBulletPerBurst: 0
+  wave: 1
+  numberBullets: 5
+  initialAngle: -15
+  endAngle: 15
