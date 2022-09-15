@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2564981864591462062}
   - component: {fileID: 2564981864591462058}
   - component: {fileID: 2564981864591462061}
+  - component: {fileID: 4113582391216098738}
   - component: {fileID: 5166953426028545416}
   - component: {fileID: 3012738992395287391}
   m_Layer: 0
@@ -137,6 +138,19 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
+--- !u!114 &4113582391216098738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2564981864591462064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a163e3d97ce2a4c93b0c3e072cf978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Shanky
 --- !u!135 &5166953426028545416
 SphereCollider:
   m_ObjectHideFlags: 0

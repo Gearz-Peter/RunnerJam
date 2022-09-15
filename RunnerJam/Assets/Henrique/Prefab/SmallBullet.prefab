@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6034406803125987472}
   - component: {fileID: 6034406803125987473}
   - component: {fileID: 1916432706164344519}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: SmallBullet
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1ebc0567b0c4c4391c1ee4a48b36b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeTime: 0.5
+  LifeTime: 0.7
   BulletSpeed: 25
 --- !u!65 &1916432706164344519
 BoxCollider:

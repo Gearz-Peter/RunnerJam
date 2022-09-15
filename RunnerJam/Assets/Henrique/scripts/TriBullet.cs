@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriBullet : MonoBehaviour, IPoolerObject
 {
     [SerializeField] float LifeTime;
+    float lifetime;
     [SerializeField] float BulletSpeed;
 
 
@@ -12,16 +13,16 @@ public class TriBullet : MonoBehaviour, IPoolerObject
     {
        
         //GetComponent<Rigidbody>().velocity = 
-        LifeTime = 5;
+        lifetime = LifeTime;
 
     }
     private void Update()
     {
 
-        if (LifeTime > 0)
+        if (lifetime > 0)
         {
             transform.position += Time.deltaTime * transform.forward * BulletSpeed;
-            LifeTime -= Time.deltaTime;
+            lifetime -= Time.deltaTime;
         }
         else
         {

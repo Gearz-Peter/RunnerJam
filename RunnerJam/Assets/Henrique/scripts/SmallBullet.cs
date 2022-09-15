@@ -5,22 +5,23 @@ using UnityEngine;
 public class SmallBullet : MonoBehaviour, IPoolerObject
 {
     [SerializeField] float LifeTime;
+    float lifetime;
     [SerializeField] float BulletSpeed;
     
 
     public void OnObjectSpawn()
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0,0,BulletSpeed);
-        LifeTime = 5;
+        lifetime = LifeTime;
 
     }
     private void Update()
     {
       
-       if (LifeTime > 0)
+       if (lifetime > 0)
         {
-           
-            LifeTime -= Time.deltaTime;
+
+            lifetime -= Time.deltaTime;
         }
        else
         {

@@ -18,7 +18,7 @@ public class Despawn : MonoBehaviour
     {
         if (other.tag == "despawn")
         {
-            Destroy(this.gameObject);
+            Destroy(this.gameObject,0.01f);
         }
     }
 

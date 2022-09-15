@@ -8,16 +8,16 @@ public class PlayerShooting : MonoBehaviour
 
 
     ObjectPooler objectpooler;
-    [SerializeField] Transform ShootPoint;
+    public Transform ShootPoint;
     [Header("Stats")]
-    [SerializeField] List<string> CurrentBulletType;
+    [SerializeField] List<string> CurrentBulletType,CurrentItems;
     [SerializeField] float ShootDelay;
     private float ShootDelayRefresh;
     [SerializeField] float SmallBulletDelay, TripleBulletDelay;
     float SmallBulletDelayR, TripleBulletDelayR;
-
-
-    
+    [SerializeField] GameObject ItemCanvas,TheCanvas;
+    [SerializeField] List<GameObject> ItemsInCanvas;
+    [SerializeField] GameObject[] CanvasItems;
 
     public void AddNewBullet(string bullettype)
     {
@@ -32,9 +32,37 @@ public class PlayerShooting : MonoBehaviour
                 break;
         }
     }
-    
+
+
+    public void AddNewItem(string item)
+    {
+       for(int i=0;i<CurrentItems.Count;i++)
+        {
+            if(CurrentItems[i] == item)
+            {
+                ItemsInCanvas[i].gameObject.SendMessage("Add");
+                return;
+            }
+        }
+
+
+        switch (item)
+        {
+            case "Shanky":
+                CurrentItems.Add(item);
+               GameObject obj = Instantiate(CanvasItems[0], transform.position, Quaternion.identity, ItemCanvas.transform);
+                ItemsInCanvas.Add(obj);
+                break;
+        }
+    }
+
+    //public void 
+
+
     private void Start()
     {
+        DontDestroyOnLoad(TheCanvas);
+
         objectpooler = ObjectPooler.Instance;
         CurrentBulletType.Add("SmallBullet");
     }
@@ -71,9 +99,9 @@ public class PlayerShooting : MonoBehaviour
                         if(TripleBulletDelayR <=0)
                         {
                             TripleAmout++;
-                            objectpooler.SpawnFromPool(BulletT, ShootPoint.position, Quaternion.Euler(0, 10 * TripleAmout, 0));
+                            objectpooler.SpawnFromPool(BulletT, ShootPoint.position, Quaternion.Euler(0, 20 / TripleAmout, 0));
                             objectpooler.SpawnFromPool(BulletT, ShootPoint.position, Quaternion.identity);
-                            objectpooler.SpawnFromPool(BulletT, ShootPoint.position, Quaternion.Euler(0, -10 * TripleAmout, 0));
+                            objectpooler.SpawnFromPool(BulletT, ShootPoint.position, Quaternion.Euler(0, -20 / TripleAmout, 0));
                         } 
                         break;
                 }

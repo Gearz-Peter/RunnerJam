@@ -56,3 +56,7 @@ MonoBehaviour:
     prefab: {fileID: 6034406803125987479, guid: 9a4cea7c9e4743b4fa6b3d2406e8a236,
       type: 3}
     size: 1000
+  - tag: SpikeBullet
+    prefab: {fileID: 6034406803125987479, guid: 0b4cce05cb79b34459bf6c709f54fe13,
+      type: 3}
+    size: 1000
