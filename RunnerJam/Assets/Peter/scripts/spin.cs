@@ -27,6 +27,6 @@ public class spin : MonoBehaviour
     {
         cubebody.angularVelocity = new Vector3(0, speed, 0);
 
-        cubebody.transform.position = new Vector3(cubebody.transform.position.x, (curve.Evaluate(Time.time + randomNumber) * .4f) + .5f, cubebody.transform.position.z);
+        cubebody.transform.localPosition = new Vector3(cubebody.transform.localPosition.x, (curve.Evaluate(Time.time + randomNumber) * .4f) + .5f, cubebody.transform.localPosition.z);
     }
 }

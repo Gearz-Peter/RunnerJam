@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ShankItemActive : MonoBehaviour
 {
 
@@ -9,9 +9,11 @@ public class ShankItemActive : MonoBehaviour
     Transform ShootPoint;
     [SerializeField] float Delay;
     float delayR;
+    Text AmountText;
 
     private void Start()
     {
+        AmountText = GetComponentInChildren<Text>();
         ShootPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerShooting>().ShootPoint;
         objectpooler = ObjectPooler.Instance;
        
@@ -22,6 +24,10 @@ public class ShankItemActive : MonoBehaviour
     public void Add()
     {
         Delay /= 1.5f;
+        int number;
+        int.TryParse(AmountText.text, out number).ToString();
+        number++;
+        AmountText.text = number.ToString();
     }
 
     private void Update()

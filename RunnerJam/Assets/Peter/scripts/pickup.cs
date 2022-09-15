@@ -14,7 +14,7 @@ public class pickup : MonoBehaviour
     {
         if (other.tag == "item")
         {
-            Destroy(other.gameObject);
+            Destroy(other.gameObject,0.01f);
         }
     }
 }

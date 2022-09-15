@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class PlayerShooting : MonoBehaviour
     float SmallBulletDelayR, TripleBulletDelayR;
     [SerializeField] GameObject ItemCanvas,TheCanvas;
     [SerializeField] List<GameObject> ItemsInCanvas;
-    [SerializeField] GameObject[] CanvasItems;
+    [SerializeField] GameObject[] CanvasItems,ItemPickUps;
+    [SerializeField] GameObject EmptyItem;
 
     public void AddNewBullet(string bullettype)
     {
@@ -56,6 +58,44 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    public void RemoveItem()
+    {
+        if(CurrentItems.Count == 0)
+        {
+            //death
+            return;
+        }
+        int randomitem = Random.Range(0, CurrentItems.Count);
+        CurrentItems.RemoveAt(randomitem);
+        string itemname = ItemsInCanvas[randomitem].gameObject.name;
+        int index=0;
+        for(int i=0;i<CanvasItems.Length;i++)
+        {
+            if(CanvasItems[i].gameObject.name == itemname)
+            {
+                index = i;
+                i = CanvasItems.Length;
+            }
+        }
+        int Amout;
+        int.TryParse( ItemsInCanvas[randomitem].GetComponentInChildren<Text>().text,out Amout);
+        Destroy(ItemsInCanvas[randomitem]);
+        ItemsInCanvas.RemoveAt(randomitem);
+        for(int a=0;a<Amout;a++)
+        {
+          GameObject empty=  Instantiate(EmptyItem, transform.position + new Vector3(Random.Range(1, 2), transform.position.y - 1, Random.Range(1, 2)), Quaternion.identity);
+           GameObject obj = Instantiate(ItemPickUps[index], empty.transform.position, Quaternion.identity,empty.transform);
+           
+        }
+
+
+
+
+
+
+    }
+
+
     //public void 
 
 
@@ -69,7 +109,11 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            RemoveItem();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
         {
             AddNewBullet ("SmallBullet");
         }
